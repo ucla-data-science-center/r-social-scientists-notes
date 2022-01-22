@@ -1,6 +1,6 @@
 #########################################
-## Getting Started ##################
-
+##### Getting Started ##################
+#######################################
 
 ## Creating a project in RStudio
 #Under the File menu, click on New project, choose New directory, then New project
