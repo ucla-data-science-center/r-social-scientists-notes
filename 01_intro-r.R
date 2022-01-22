@@ -99,6 +99,35 @@ round(3.14159, digits = 3)
 ceiling(3.14159)
 floor(3.14159)
 
+## Vectors 
+
+hh_members <- c(3, 7, 10, 6)
+hh_members
+
+respondent_wall_type <- c("muddaub", "burntbricks", "sunbricks")
+respondent_wall_type
+
+# why do we quote the elements in the c function? without quotes r will tink they are existing objeccts
+# and since they aren't it will throw an error. 
+# length, class 
+# subset 
+# we can access elements in a vector: 
+
+respondent_wall_type[-3]
+
+#An atomic vector is the simplest R data type and is a linear vector of a single type.
+# The other 4 atomic vector types are:
+# "logical" for TRUE and FALSE (the boolean data type)
+# "integer" for integer numbers (e.g., 2L, the L indicates to R that it’s an integer)
+# "complex" to represent complex numbers with real and imaginary parts (e.g., 1 + 4i) and that’s all we’re going to say about them
+# "raw" for bitstreams that we won’t discuss further
+
+c(TRUE, FALSE)
+
+# Vectors are one of the many data structures that R uses. Other important ones are lists (list), 
+# matrices (matrix), data frames (data.frame), factors (factor) and arrays (array).
+
+
 ###########################
 ## Starting with Data #####
 ############################
