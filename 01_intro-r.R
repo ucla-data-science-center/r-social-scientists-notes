@@ -66,6 +66,7 @@ area_hectares <- 50
 
 # Comments using the pound sign 
 # anything to the right of the # is treated as comment and ignored 
+
 area_hectares <- 1.0			# land area in hectares
 area_acres <- area_hectares * 2.47	# convert to acres
 area_acres				# print land area in acres.
@@ -115,6 +116,25 @@ respondent_wall_type
 
 respondent_wall_type[-3]
 
+# we can use th c() function to subset 
+
+respondent_wall_type(c(1, 2))
+
+# can subset by conditional: 
+
+hh_members > 5
+
+# note reurns vector of true and false 
+# with this we can use this true/false vector to subset 
+
+
+hh_members[hh_members > 5]
+
+# this is saying we want to return only those elements grater than five
+
+
+# skip length, class, str with starting with data 
+
 #An atomic vector is the simplest R data type and is a linear vector of a single type.
 # The other 4 atomic vector types are:
 # "logical" for TRUE and FALSE (the boolean data type)
@@ -128,6 +148,16 @@ c(TRUE, FALSE)
 # matrices (matrix), data frames (data.frame), factors (factor) and arrays (array).
 
 
+# Missing data 
+# * Missing data are represented in vectors as NA. 
+# * be aware of that many functions will return 
+
+rooms <- c(2, 1, 1, NA, 7)
+mean(rooms)
+max(rooms)
+mean(rooms, na.rm = TRUE)
+mas(rooms, na.rm = TRUE)
+
 ###########################
 ## Starting with Data #####
 ############################
@@ -139,15 +169,117 @@ c(TRUE, FALSE)
 ## Change how character strings are handled in a data frame.
 ## Examine and change date formats.
 
+# let's import libraries we need 
 
 library(tidyverse)
+#install.packages('here')
 library(here)
+
+# dataframe are defacto data structure in R for representing tabular data 
+# what we use for data processing, stats & plotting 
+# format of a table where columns are vectors that all have same length
+# like excel but each column must have same data type 
+# see: https://datacarpentry.org/r-socialsci/fig/data-frame.svg
+# can be created by hand but more typically we read them in from a file like a CSV
+
+## Data 
+
+# we'll be using the SAFI(Studying African Farmer-Led Irrigation) study 
+#looking at farming and irrigation methods in Tanzania and Mozambique
+# collected through interviews conducted between November 2016 and June 2017
+#show: 
+# https://datacarpentry.org/r-socialsci/02-starting-with-data/index.html#presentation-of-the-safi-data
+
+## Importing the data 
+# to read in data we use a read_csv() function that is part of readr in the tidyverse
+# when we loaded the tidyverse (library(tidyverse)), 
+# the core packages (the packages used in most data analyses) get loaded, including readr
+
+# it can be difficult to learn how to specify paths to file locations. 
+# Enter the here package! 
+# The here package creates paths relative to the top-level directory (your RStudio project). 
+# These relative paths work regardless of where the associated source file lives 
+# inside your project, like analysis projects with data and reports in different subdirectories. 
+# This is an important contrast to using setwd(), 
+# which depends on the way you order your files on your computer.
+
 
 interviews <- read_csv(
   here("data", "SAFI_clean.csv"), 
-  na = "NULL")
+  na = "NULL") # set our NA value from the data set, show data 
 
-# go thru code 
+# * we notice the here() function takes folder and file names as inputs (e.g., "data", "SAFI_clean.csv"), each enclosed in quotations ("") and separated by a comma.
+# * The here() will accept as many names as are necessary to navigate to a particular file 
+# (e.g., here("analysis", "data", "surveys", "clean", "SAFI_clean.csv)).
+# * note the diff b/t read_csv & read.csv 
+# * The second statement in the code above creates a data frame but doesn’t output any data because, as you might recall, assignments (<-) don’t display anything. 
+# * (Note, however, that read_csv may show informational text about the data frame that is created.) 
+# * If we want to check that our data has been loaded, we can see the contents of the data frame by typing its name: interviews in the console.
+
+interviews
+
+# Note that read_csv() actually loads the data as a tibble. 
+# A tibble is an extension of R data frames used by the tidyverse. 
+#When the data is read using read_csv(), it is stored in an object of class tbl_df, tbl, and data.frame. 
+# We can see the class of an object with:
+
+class(interviews)
+
+## inspecting data frames functions 
+# note when we print out a data frame we get a lot of info in the out put 
+# but there are a number of functions we will use to inspect data frames
+
+dim(interviews) # rows & columns, how many rows do we have?
+nrow(interviews) # just the rows
+ncols(interviews) # cols 
+#what do you think this produces? 
+head(interviews) # first six rows, you can make it show more or less by add a number
+#what if i add comma and 10?
+head(interviews, 10) 
+#what about this? 
+tail(interviews) # bottom six
+#again?
+names(interviews) # this is a vector, we can subset it like a vector
+#what if i want to get at just the `village` name
+names(interviews)[2]
+
+### summarization 
+str(interviews) #structure of the object & info about the class, note the similarity to Environment
+summary(interviews) # summary stats for each col 
+glimpse(interviews) # num or col and rows, names, and value previews
+# glimpse comes from the tidyverse
+#most of these functions are generic - they can be used on other R data types
+
+## indexing and subsetting data frames 
+
+# first element of the data frame - returned as a data frame
+interviews
+interviews[1, 1]
+# first element in the 6th column of the tibble
+interviews[1,6]
+#first column of the tibble (as a vector)
+interviews[[1]] #think of unwrapping the onion here 
+#first column of the tibble 
+interviews[1]
+#first three elements in the 7th column of the tibble 
+interviews[1:3, 7] #we use the colon to get the first three rows of 7th column
+#third row fo the tibble 
+interviews[3,]
+# equivalent of head_interviews <- head(interivews)
+head_interviews <- interviews[1:6, ]
+#what is this the equivalant to? 
+# yes
+head_interviews <- head(interviews)
+#omission 
+interviews[, -1] #what wil this give? 
+#everything except the first column
+interviews[-c(7:131),] #equivalent to ? 
+
+# we can subset by names too: 
+interviews["village"]
+interviews[,"village"]
+interviews[["village"]] #what does this return
+interview$village 
 
 # skip Factors section 
 
