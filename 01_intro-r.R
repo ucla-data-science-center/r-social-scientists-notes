@@ -124,14 +124,23 @@ respondent_wall_type(c(1, 2))
 
 hh_members > 5
 
-# note reurns vector of true and false 
-# with this we can use this true/false vector to subset 
+# note returns vector of true and falses based on that expression 
 
+# in R this is called a logical vector 
+# we can create them as well: 
 
-hh_members[hh_members > 5]
+logical_vec <- c(TRUE, FALSE, TRUE)
+logical_vec
+
+# with this knowledge we can subset our dataframe with this true/false vector
+
+hh_members[logical_vec] # what will this produce? 
+
+# now knowing that (true's are returmed) we can get back to our conditional expression 
+
+hh_members[hh_members > 5] # what will this return?
 
 # this is saying we want to return only those elements grater than five
-
 
 # skip length, class, str with starting with data 
 
@@ -142,11 +151,8 @@ hh_members[hh_members > 5]
 # "complex" to represent complex numbers with real and imaginary parts (e.g., 1 + 4i) and that’s all we’re going to say about them
 # "raw" for bitstreams that we won’t discuss further
 
-c(TRUE, FALSE)
-
 # Vectors are one of the many data structures that R uses. Other important ones are lists (list), 
 # matrices (matrix), data frames (data.frame), factors (factor) and arrays (array).
-
 
 # Missing data 
 # * Missing data are represented in vectors as NA. 
