@@ -283,4 +283,67 @@ interview$village
 
 # skip Factors section 
 
+# dates 
+# common issue is the pain of working with dates 
+# best practice is to keep date components separate columns
+# why do you think this is? 
+# one reason is portability out side of R, excel and other spreadsheet software make assumptions about date formats
+# unambiguous of what is intended - e.g. is it mm/dd/yyyy or dd/mm/yyyy 
+# let's convert the dates into columns 
+
+str(interviews)
+
+# we need to use lubridate 
+
+#install.packages('lubridate')
+library(lubridate)
+
+# lubridate has a function ymd() & converts to a Date vector, once it's a Date 
+# r recongnizes it as such and we can manipulate it as a date 
+# let's extract our dates and inspect 
+
+dates <- interviews$interview_date #note the format yyyy-mm-dd
+dates
+# read_csv() recognized this column as date info on read. 
+# we can now use lubridate's day() month() year() to extract this info from the data & store it in our dataframe
+#let's run on one function by itself bf saving first 
+
+day(dates)
+# ok now
+interviews$day <- day(dates) #what do you think this will do 
+interviews$month <- month(dates)
+interviews$year <- year(dates)
+interviews
+
+#above our data was read in right by read_csv - this is not always the case
+#often the data will be read in as a character 
+# we can use lubridate to parse that character into a date 
+#let's look 
+char_dates <- c("7/31/2012", "8/9/2014", "4/30/2016")
+str(char_dates)
+
+# lubridate has a parse function calle mdy()
+
+mdy(char_dates)
+str(mdy(char_dates))
+# it also has other functions for ymd() and other common formats 
+
+# some viz at teh end
+# ggplot is the most popular plotting package in R 
+# let's look at the distribution of wall types 
+ggplot(interviews, aes(x = rooms)) +
+  geom_histogram()
+
+# we can look at the distribution of how many years respondents have lived in the village 
+ggplot(interviews, aes(x = years_liv)) + 
+  geom_histogram()
+
+#what about distribution of rooms by repondent wall type 
+interviews$respondent_wall_type
+
+ggplot(interviews, aes(x = respondent_wall_type, y = rooms)) +
+  geom_boxplot()
+
+#a simple frequency table: 
+table(interviews$respondent_wall_type, interviews$rooms)
 
