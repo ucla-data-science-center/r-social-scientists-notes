@@ -2,11 +2,11 @@
 ##### Getting Started ##################
 #######################################
 
-## Creating a project in RStudio
-#Under the File menu, click on New project, choose New directory, then New project
-#Enter a name for this new folder (or “directory”) and choose a convenient location for it. This will be your working directory for the rest of the day (e.g., ~/data-carpentry)
-#Click on Create project
-#Create a new file where we will type our scripts. Go to File > New File > R script. Click the save icon on your toolbar and save your script as “script.R”.
+## Creating a project in RStudio (in-class)
+#1.Under the File menu, click on New project, choose New directory, then New project
+#2.Enter a name for this new folder (or “directory”) and choose a convenient location for it. This will be your working directory for the rest of the day (e.g., ~/data-carpentry)
+#3. Click on Create project
+#4. Create a new file where we will type our scripts. Go to File > New File > R script. Click the save icon on your toolbar and save your script as “script.R”.
 
 install.packages()
 
