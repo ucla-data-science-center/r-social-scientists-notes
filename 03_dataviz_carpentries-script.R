@@ -115,6 +115,7 @@ ggplotly(interviews_plotting %>%
   ggplot(aes(x = no_membrs, y = number_items, color = village)) +
   geom_count())
 
-
+interviews_plotting %>% 
+  write_csv("data/interviews_plotting.csv")
 
 
