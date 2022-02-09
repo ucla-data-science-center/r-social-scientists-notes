@@ -1,0 +1,36 @@
+---
+title: "Getting started with R Markdown "
+author: "Tim Dennis"
+date: "2/7/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+* flexible type of document that allows you combine 
+executable R code, and its output, with text in a single document. 
+* can be readily converted to multiple static and dynamic output
+formats, including PDF (.pdf), Word (.docx), and HTML (.html).
+* The benefit of a well-prepared R Markdown document is full reproducibility. 
+* you notice a data transcription error, or you are able to
+add more data to your analysis, you will be able to recompile the report without making any changes in the actual document.
+* The **rmarkdown** package comes pre-installed with RStudio, so no action is  necessary.
+
+<figure>
+```{r rmarkdown-wizards, echo = FALSE, fig.show = "hold", fig.alt = "R Markdown wizard monsters creating a R Markdown document from a recipe. Art by Allison Horst", out.width="100%"}
+knitr::include_graphics("https://datacarpentry.org/r-socialsci/fig/rmarkdown_wizards.png")
+```
+<figcaption>
+Image credit: <a href="https://github.com/allisonhorst/stats-illustrations">Allison Horst</a>
+</figcaption>
+</figure>
+
+## Creating an R Markdown file
+
+* To create a new R Markdown document in RStudio, click File -> New File -> R Markdown:
+
+![Screenshot of the New R Markdown file dialogue box in RStudio](https://datacarpentry.org/r-socialsci/fig/new-rmd.png)

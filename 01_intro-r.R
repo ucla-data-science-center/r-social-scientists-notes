@@ -2,6 +2,7 @@
 ##### Getting Started ##################
 #######################################
 
+# create a project exercise 
 ## Creating a project in RStudio (in-class)
 #1.Under the File menu, click on New project, choose New directory, then New project
 #2.Enter a name for this new folder (or “directory”) and choose a convenient location for it. This will be your working directory for the rest of the day (e.g., ~/data-carpentry)
@@ -353,3 +354,6 @@ ggplot(interviews, aes(x = respondent_wall_type, y = rooms)) +
 #a simple frequency table: 
 table(interviews$respondent_wall_type, interviews$rooms)
 
+interviews %>%
+  mutate(people_per_room = as.integer(no_membrs / rooms)) %>% 
+  View()
